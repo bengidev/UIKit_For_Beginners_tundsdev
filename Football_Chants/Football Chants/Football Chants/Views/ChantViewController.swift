@@ -26,6 +26,7 @@ class ChantViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
+        setupNavigation()
         setupTableView()
     }
     
@@ -38,7 +39,12 @@ class ChantViewController: UIViewController {
 }
 
 private extension ChantViewController {
-    func setupTableView() -> Void {
+    private func setupNavigation() -> Void {
+        self.navigationController?.navigationBar.topItem?.title = "Football Chants"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    private func setupTableView() -> Void {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         

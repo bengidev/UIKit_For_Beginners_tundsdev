@@ -33,6 +33,9 @@
 		B6EF49732B0431C400C88042 /* Teams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF495F2B0431C400C88042 /* Teams.swift */; };
 		B6EF49752B04325800C88042 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6EF49742B04325800C88042 /* Assets.xcassets */; };
 		B6EF49782B04351600C88042 /* ChantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF49772B04351600C88042 /* ChantViewController.swift */; };
+		B6EF497E2B044CED00C88042 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF497D2B044CED00C88042 /* Team.swift */; };
+		B6EF49802B044E2400C88042 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF497F2B044E2400C88042 /* Manager.swift */; };
+		B6EF49832B0451A900C88042 /* TeamsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6EF49822B0451A900C88042 /* TeamsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		B6EF495F2B0431C400C88042 /* Teams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Teams.swift; sourceTree = "<group>"; };
 		B6EF49742B04325800C88042 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B6EF49772B04351600C88042 /* ChantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChantViewController.swift; sourceTree = "<group>"; };
+		B6EF497D2B044CED00C88042 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		B6EF497F2B044E2400C88042 /* Manager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manager.swift; sourceTree = "<group>"; };
+		B6EF49822B0451A900C88042 /* TeamsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +102,9 @@
 		B6EF49352B042E9D00C88042 /* Football Chants */ = {
 			isa = PBXGroup;
 			children = (
-				B6EF49762B0434FE00C88042 /* View Controllers */,
+				B6EF49812B0451A900C88042 /* ViewModels */,
+				B6EF497C2B044CE300C88042 /* Models */,
+				B6EF49762B0434FE00C88042 /* Views */,
 				B6EF49362B042E9D00C88042 /* AppDelegate.swift */,
 				B6EF49382B042E9D00C88042 /* SceneDelegate.swift */,
 				B6EF493C2B042E9D00C88042 /* Main.storyboard */,
@@ -143,12 +151,29 @@
 			path = Chants;
 			sourceTree = "<group>";
 		};
-		B6EF49762B0434FE00C88042 /* View Controllers */ = {
+		B6EF49762B0434FE00C88042 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				B6EF49772B04351600C88042 /* ChantViewController.swift */,
 			);
-			path = "View Controllers";
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B6EF497C2B044CE300C88042 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF497D2B044CED00C88042 /* Team.swift */,
+				B6EF497F2B044E2400C88042 /* Manager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B6EF49812B0451A900C88042 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B6EF49822B0451A900C88042 /* TeamsViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,8 +267,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6EF49732B0431C400C88042 /* Teams.swift in Sources */,
+				B6EF49832B0451A900C88042 /* TeamsViewModel.swift in Sources */,
+				B6EF49802B044E2400C88042 /* Manager.swift in Sources */,
 				B6EF49782B04351600C88042 /* ChantViewController.swift in Sources */,
 				B6EF49372B042E9D00C88042 /* AppDelegate.swift in Sources */,
+				B6EF497E2B044CED00C88042 /* Team.swift in Sources */,
 				B6EF49392B042E9D00C88042 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

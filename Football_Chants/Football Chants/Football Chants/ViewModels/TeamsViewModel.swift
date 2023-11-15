@@ -106,4 +106,14 @@ class TeamsViewModel {
              manager: .init(name: "Nuno Espírito Santo", job: .headCoach),
              founded: "1877"),
     ]
+    
+    func togglePlay(for team: Team) -> Void {
+        for item in teams {
+            if item.id == team.id {
+                item.isPlaying.toggle()
+            } else {
+                item.isPlaying = false
+            }
+        }
+    }
 }

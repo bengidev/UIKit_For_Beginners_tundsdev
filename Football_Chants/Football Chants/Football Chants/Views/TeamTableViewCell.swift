@@ -7,8 +7,16 @@
 
 import UIKit
 
+protocol TeamTableViewCellDelegate: AnyObject {
+    func didPlayPressed(for team: Team) -> Void
+}
+
 final class TeamTableViewCell: UITableViewCell {
     static let cellId = "TeamTableViewCell"
+    
+    // MARK: Instances
+    private weak var delegate: TeamTableViewCellDelegate?
+    private var team: Team?
     
     // MARK: UI
     private lazy var containerView: UIView = {
@@ -43,7 +51,6 @@ final class TeamTableViewCell: UITableViewCell {
         return btn
     }()
 
-    
     private lazy var nameLabel: UILabel = {
         let lb = UILabel()
         lb.translatesAutoresizingMaskIntoConstraints = false
@@ -97,10 +104,23 @@ final class TeamTableViewCell: UITableViewCell {
         self.containerView.layer.shadowOpacity = 0.5
     }
     
-    func configureLayout(with item: Team) -> Void {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.contentView.subviews.forEach { $0.removeFromSuperview() }
+        self.delegate = nil
+        self.team = nil
+    }
+    
+    // MARK: Additional Functions
+    func configure(with item: Team, delegate: TeamTableViewCellDelegate) -> Void {
+        self.team = item
+        self.delegate = delegate
+        
         self.containerView.backgroundColor = item.id.background
         self.badgeImageView.image = item.id.badge
         self.playButton.setImage(item.isPlaying ? Assets.pause : Assets.play, for: .normal)
+        self.playButton.addTarget(self, action: #selector(self.didPlayPressed(_:)), for: .touchUpInside)
         self.nameLabel.text = item.name
         self.foundedLabel.text = item.founded
         self.jobLabel.text = "Current \(item.manager.job.rawValue): \(item.manager.name)"
@@ -138,5 +158,11 @@ final class TeamTableViewCell: UITableViewCell {
             self.playButton.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor, constant: -10),
             self.playButton.centerYAnchor.constraint(equalTo: self.containerView.centerYAnchor),
         ])
+    }
+    
+    @objc private func didPlayPressed(_ sender: Any) -> Void {
+        guard let team = team else { return }
+        
+        self.delegate?.didPlayPressed(for: team)
     }
 }

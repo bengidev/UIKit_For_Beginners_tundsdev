@@ -78,9 +78,22 @@ extension ChantViewController: UITableViewDataSource {
                                                        for: indexPath) as? TeamTableViewCell else { return UITableViewCell() }
         
         let item = teamsViewModel.teams[indexPath.row]
-        cell.configureLayout(with: item)
+        cell.configure(with: item, delegate: self)
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: TeamTableViewCellDelegate
+extension ChantViewController: TeamTableViewCellDelegate {
+    func didPlayPressed(for team: Team) {
+        print("Selected Team: \(team.name)")
+        
+        self.teamsViewModel.togglePlay(for: team)
+        self.tableView.reloadData()
+    }
 }

@@ -17,7 +17,7 @@ class ChantViewController: UIViewController {
         tv.rowHeight = UITableView.automaticDimension
         tv.estimatedRowHeight = 44
         tv.separatorStyle = .none
-        tv.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tv.register(TeamTableViewCell.self, forCellReuseIdentifier: TeamTableViewCell.cellId)
         
         return tv
     }()
@@ -45,10 +45,10 @@ private extension ChantViewController {
         self.view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -5),
-            tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor, constant: 5),
-            tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+            self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
 }
@@ -65,20 +65,9 @@ extension ChantViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.frame = cell.frame.inset(by: UIEdgeInsets(top: .zero, left: 5.0, bottom: 5.0, right: .zero))
-        cell.layer.cornerRadius = 10
-        
-        switch indexPath.row {
-        case 0:
-            cell.backgroundColor = .systemRed
-        case 1:
-            cell.backgroundColor = .systemGreen
-        case 2:
-            cell.backgroundColor = .systemBlue
-        default:
-            cell.backgroundColor = .black
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TeamTableViewCell.cellId,
+                                                       for: indexPath) as? TeamTableViewCell else { return UITableViewCell() }
+        cell.configure()
         
         return cell
     }

@@ -38,9 +38,6 @@ final class TeamTableViewCell: UITableViewCell {
     private lazy var playButton: UIButton = {
         let btn = UIButton()
         btn.translatesAutoresizingMaskIntoConstraints = false
-        btn.setImage(UIImage(systemName: "play.circle.fill",
-                             withConfiguration: UIImage.SymbolConfiguration(pointSize: 32)),
-                     for: .normal)
         btn.tintColor = .white
         
         return btn
@@ -100,16 +97,17 @@ final class TeamTableViewCell: UITableViewCell {
         self.containerView.layer.shadowOpacity = 0.5
     }
     
-    func configure() -> Void {
-        self.badgeImageView.image = TeamType.manchesterUnited.badge
-        self.nameLabel.text = "Manchester United"
-        self.foundedLabel.text = "1878"
-        self.jobLabel.text = "Current Manager: Erik ten Hag"
-        self.infoLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    func configureLayout(with item: Team) -> Void {
+        self.containerView.backgroundColor = item.id.background
+        self.badgeImageView.image = item.id.badge
+        self.playButton.setImage(item.isPlaying ? Assets.pause : Assets.play, for: .normal)
+        self.nameLabel.text = item.name
+        self.foundedLabel.text = item.founded
+        self.jobLabel.text = "Current \(item.manager.job.rawValue): \(item.manager.name)"
+        self.infoLabel.text = item.info
         
         self.contentView.addSubview(self.containerView)
         
-        self.containerView.backgroundColor = TeamType.arsenal.background
         self.containerView.addSubview(self.contentStackView)
         self.containerView.addSubview(self.badgeImageView)
         self.containerView.addSubview(self.playButton)

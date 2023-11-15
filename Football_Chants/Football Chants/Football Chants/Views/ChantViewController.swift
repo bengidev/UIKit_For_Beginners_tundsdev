@@ -9,6 +9,9 @@ import UIKit
 
 class ChantViewController: UIViewController {
     
+    // MARK: ViewController
+    private lazy var teamsViewModel = TeamsViewModel()
+    
     // MARK: UI
     private lazy var tableView: UITableView = {
         let tv = UITableView()
@@ -67,13 +70,15 @@ extension ChantViewController: UITableViewDelegate {
 // MARK: UITableViewDataSource
 extension ChantViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return teamsViewModel.teams.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: TeamTableViewCell.cellId,
                                                        for: indexPath) as? TeamTableViewCell else { return UITableViewCell() }
-        cell.configure()
+        
+        let item = teamsViewModel.teams[indexPath.row]
+        cell.configureLayout(with: item)
         
         return cell
     }

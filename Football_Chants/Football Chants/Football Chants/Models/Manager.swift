@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum JobType: Codable {
-    case manager
-    case headCoach
+enum JobType: String, Codable {
+    case manager = "Manager"
+    case headCoach = "Head Coach"
 }
 
 struct Manager: Codable {

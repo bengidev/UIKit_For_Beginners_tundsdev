@@ -11,6 +11,7 @@ class ChantViewController: UIViewController {
     
     // MARK: ViewController
     private lazy var teamsViewModel = TeamsViewModel()
+    private lazy var audioManagerViewModel = AudioManagerViewModel()
     
     // MARK: UI
     private lazy var tableView: UITableView = {
@@ -93,6 +94,7 @@ extension ChantViewController: TeamTableViewCellDelegate {
     func didPlayPressed(for team: Team) {
         print("Selected Team: \(team.name)")
         
+        self.audioManagerViewModel.playSound(from: team)
         self.teamsViewModel.togglePlay(for: team)
         self.tableView.reloadData()
     }
